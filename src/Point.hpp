@@ -18,6 +18,10 @@ namespace asordi
             Point operator*(const double d) const;
             Point operator-(const Point &v) const;
             Point operator+(const Point &v) const;
+            double perp(const Point &v) const;
+            double dot(const Point &v) const;
+            double norm() const;
+            double dist(const Point &other) const;
 
         public:
             double x;

@@ -1,3 +1,4 @@
+#include <cmath>
 #include "Point.hpp"
 
 namespace asordi
@@ -64,6 +65,26 @@ namespace asordi
         Point Point::operator+(const Point &v) const
         {
             return Point(x + v.x, y + v.y);
+        }
+
+        double Point::perp(const Point &v) const
+        {
+            return x * v.y - y * v.x;
+        }
+
+        double Point::dot(const Point &v) const
+        {
+            return x * v.x + y * v.y;
+        }
+        double Point::norm() const
+        {
+            return std::sqrt(x * x + y * y);
+        }
+
+        double Point::dist(const Point &other) const
+        {
+            const Point v = *this - other;
+            return std::sqrt((v.x * v.x) + (v.y * v.y));
         }
     }
 }
