@@ -9,8 +9,6 @@ namespace asordi
             Point(double x, double y);
             virtual ~Point();
 
-            double get_x() const;
-            double get_y() const;
             static int compareTo(const Point &l, const Point r);
             bool operator<(const Point &r) const;
             bool operator>(const Point &r) const;
@@ -21,9 +19,9 @@ namespace asordi
             Point operator-(const Point &v) const;
             Point operator+(const Point &v) const;
 
-        private:
-            double x_;
-            double y_;
+        public:
+            double x;
+            double y;
         };
 
     }

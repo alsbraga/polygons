@@ -4,27 +4,17 @@ namespace asordi
 {
     namespace polygons
     {
-        Point::Point(double x, double y) : x_(x), y_(y) {}
+        Point::Point(double x = 0.0, double y = 0.0) : x(x), y(y) {}
         Point::~Point() {}
-
-        double Point::get_x() const
-        {
-            return x_;
-        }
-
-        double Point::get_y() const
-        {
-            return y_;
-        }
 
         int Point::compareTo(const Point &l, const Point r)
         {
             int result;
-            if ((l.get_x() < r.get_x()) || ((l.get_x() == r.get_x()) && (l.get_y() < r.get_y())))
+            if ((l.x < r.x) || ((l.x == r.x) && (l.y < r.y)))
             {
                 result = -1;
             }
-            else if ((l.get_x() == r.get_x()) && (l.get_y() == r.get_y()))
+            else if ((l.x == r.x) && (l.y == r.y))
             {
                 result = 0;
             }
@@ -63,17 +53,17 @@ namespace asordi
 
         Point Point::operator*(double d) const
         {
-            return Point(get_x() * d, get_y() * d);
+            return Point(x * d, y * d);
         }
 
         Point Point::operator-(const Point &v) const
         {
-            return Point(get_x() - v.get_x(), get_y() - v.get_y());
+            return Point(x - v.x, y - v.y);
         }
 
         Point Point::operator+(const Point &v) const
         {
-            return Point(get_x() + v.get_x(), get_y() + v.get_y());
+            return Point(x + v.x, y + v.y);
         }
     }
 }
