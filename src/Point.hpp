@@ -1,8 +1,10 @@
+#ifndef ASORDI_POLYGONS_POINT_
+#define ASORDI_POLYGONS_POINT_
+
 namespace asordi
 {
     namespace polygons
     {
-
         class Point
         {
         public:
@@ -30,3 +32,5 @@ namespace asordi
 
     }
 }
+
+#endif // ASORDI_POLYGONS_POINT_
