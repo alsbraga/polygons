@@ -5,7 +5,7 @@ namespace asordi
 {
     namespace polygons
     {
-        Point::Point(double x = 0.0, double y = 0.0) : x(x), y(y) {}
+        Point::Point(double x, double y) : x(x), y(y) {}
         Point::~Point() {}
 
         int Point::compareTo(const Point &l, const Point r)

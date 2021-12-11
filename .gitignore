@@ -12,3 +12,4 @@ _deps
 build/
 .vscode/
 generated/
+.DS_Store

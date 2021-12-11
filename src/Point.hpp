@@ -11,7 +11,7 @@ namespace asordi
         class Point
         {
         public:
-            Point(double x, double y);
+            Point(double x=0.0, double y=0.0);
             virtual ~Point();
 
             static int compareTo(const Point &l, const Point r);
