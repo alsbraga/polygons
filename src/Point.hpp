@@ -5,6 +5,9 @@ namespace asordi
 {
     namespace polygons
     {
+        /**
+         * @ingroup polygons
+         */
         class Point
         {
         public:

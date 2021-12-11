@@ -8,8 +8,14 @@ namespace asordi
 {
     namespace polygons
     {
+        /**
+         * @ingroup polygons
+         */
         typedef std::vector<Point> Vertices;
 
+        /**
+         * @ingroup polygons
+         */
         class Polygon
         {
             static bool isComplex(const Vertices &vertices);

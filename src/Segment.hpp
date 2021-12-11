@@ -7,6 +7,9 @@ namespace asordi
 {
     namespace polygons
     {
+        /**
+         * @ingroup polygons
+         */
         enum class Intersection
         {
             ERROR = -1,
@@ -17,12 +20,21 @@ namespace asordi
             OVERLAP = 4
         };
 
+        /**
+         * @ingroup polygons
+         */
         class Segment
         {
         public:
             Segment(const Point &p0, const Point &p1);
             virtual ~Segment();
             bool inSegment(const Point &p) const;
+            /**
+             * @brief Determines if two segments intersect each other of if they are parallel or collinear.
+             * @par Requirements
+             * - _Req_pol_01.01_
+             * - _Req_pol_01.02_
+             */
             Intersection intersection(const Segment &s2) const;
 
         public:
