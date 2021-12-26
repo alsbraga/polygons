@@ -40,6 +40,8 @@ namespace asordi
         public:
             Point p0;
             Point p1;
+            static const double epsilon;
+            static const double valid_range[2];
         };
     }
 }
