@@ -1,5 +1,6 @@
 project (polygons)
 cmake_minimum_required(VERSION 3.18)
+set(CMAKE_CXX_STANDARD 17)
 
 option(BUILD_TESTS "Build Test Cases" OFF)
 option(RUN_TESTS "Build and run Test Cases" OFF)

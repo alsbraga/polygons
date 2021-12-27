@@ -1,4 +1,5 @@
 add_executable(polygon_tests
+    main.cpp
     point_test.cpp
     segment_test.cpp
 )

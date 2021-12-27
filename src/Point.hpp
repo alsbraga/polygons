@@ -11,13 +11,14 @@ namespace asordi
         class Point
         {
         public:
-            Point(double x=0.0, double y=0.0);
+            Point(double x = 0.0, double y = 0.0);
             virtual ~Point();
 
             static int compareTo(const Point &l, const Point r);
             bool operator<(const Point &r) const;
             bool operator>(const Point &r) const;
             bool operator==(const Point &r) const;
+            bool operator!=(const Point &r) const;
             bool operator<=(const Point &r) const;
             bool operator>=(const Point &r) const;
             Point operator*(const double d) const;

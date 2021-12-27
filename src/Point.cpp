@@ -1,5 +1,5 @@
-#include <cmath>
 #include "Point.hpp"
+#include <cmath>
 
 namespace asordi
 {
@@ -40,6 +40,11 @@ namespace asordi
         bool Point::operator==(const Point &r) const
         {
             return compareTo(*this, r) == 0;
+        }
+
+        bool Point::operator!=(const Point &r) const
+        {
+            return compareTo(*this, r) != 0;
         }
 
         bool Point::operator<=(const Point &r) const
