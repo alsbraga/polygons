@@ -6,12 +6,16 @@ namespace asordi
 {
     namespace polygons
     {
-        const double Segment::valid_range[2] = {-Segment::epsilon, 1.0 + Segment::epsilon};
-        const double Segment::epsilon = 1e-7;
+        Segment::Segment(const Point &p0, const Point &p1) : p0(p0), p1(p1), epsilon_(1e-7), lo_(-1e-7), hi_(1.0+1e-7){}
 
-        Segment::Segment(const Point &p0, const Point &p1) : p0(p0), p1(p1){};
+        Segment::~Segment(){}
 
-        Segment::~Segment(){};
+        void Segment::setEpsilon(const double v)
+        {
+            epsilon_ = v;
+            lo_ = -v;
+            hi_ = 1.0 + v;
+        }
 
         bool Segment::inSegment(const Point &p) const
         {
@@ -63,12 +67,12 @@ namespace asordi
             const Point v = s2.p1 - s2.p0;
             const Point w = s1.p0 - s2.p0;
             const double d = u.perp(v);
-            if (std::abs(d) < epsilon)
+            if (std::abs(d) < epsilon_)
             {
                 // they parallel, including if any is a point
                 const double uPerpW = std::abs(u.perp(w));
                 const double vPerpW = std::abs(v.perp(w));
-                if ((uPerpW > epsilon) || (vPerpW > epsilon))
+                if ((uPerpW > epsilon_) || (vPerpW > epsilon_))
                 {
                     result = Intersection::PARALLEL; // they are not collinear (or very near to each other)
                 }
@@ -77,10 +81,10 @@ namespace asordi
                     // collinear or degenerate; check if they are degenerate points
                     const double du = u.dot(u);
                     const double dv = v.dot(v);
-                    if ((du < epsilon) && (dv < epsilon))
+                    if ((du < epsilon_) && (dv < epsilon_))
                     {
                         // both segments are points
-                        if (s1.p0.dist(s2.p0) < epsilon)
+                        if (s1.p0.dist(s2.p0) < epsilon_)
                         {
                             // they are the same point (or too near)
                             result = Intersection::INTERSECT;
@@ -90,7 +94,7 @@ namespace asordi
                             result = Intersection::COLLINEAR;
                         }
                     }
-                    else if (std::abs(du) < epsilon)
+                    else if (std::abs(du) < epsilon_)
                     {
                         // s1 is a single point (or a very small line)
                         if (s2.inSegment(s1.p0))
@@ -102,7 +106,7 @@ namespace asordi
                             result = Intersection::COLLINEAR; // but is not part of s2
                         }
                     }
-                    else if (std::abs(dv) < epsilon)
+                    else if (std::abs(dv) < epsilon_)
                     {
                         // s2 is a single point (or a very small line)
                         if (s1.inSegment(s2.p0))
@@ -118,8 +122,8 @@ namespace asordi
                     {
                         // they are collinear; check if they overlap
                         const Point w2 = s1.p1 - s2.p0;
-                        double t0 = (std::abs(v.x) > epsilon) ? (w.x / v.x) : (w.y / v.y);
-                        double t1 = (std::abs(v.x) > epsilon) ? (w2.x / v.x) : (w2.y / v.y);
+                        double t0 = (std::abs(v.x) > epsilon_) ? (w.x / v.x) : (w.y / v.y);
+                        double t1 = (std::abs(v.x) > epsilon_) ? (w2.x / v.x) : (w2.y / v.y);
                         if (t0 > t1)
                         {
                             const double temp = t0;
@@ -151,14 +155,14 @@ namespace asordi
             {
                 // the segments are skew and may intersect in a point
                 const double si = v.perp(w) / d;
-                if ((si < valid_range[0]) || (si > valid_range[1]))
+                if ((si < lo_) || (si > hi_))
                 {
                     result = Intersection::DISJOINT;
                 }
                 else
                 {
                     const double ti = u.perp(w) / d;
-                    if ((ti < valid_range[0]) || (ti > valid_range[1]))
+                    if ((ti < lo_) || (ti > hi_))
                     {
                         result = Intersection::DISJOINT;
                     }

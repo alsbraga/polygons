@@ -34,11 +34,16 @@ namespace asordi
              */
             Intersection intersection(const Segment &s2) const;
 
+            void setEpsilon(const double v);
+
         public:
             Point p0;
             Point p1;
-            static const double epsilon;
-            static const double valid_range[2];
+
+        private:
+            double epsilon_;
+            double lo_;
+            double hi_;
         };
     }
 }
